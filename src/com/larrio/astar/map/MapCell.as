@@ -24,12 +24,8 @@ package com.larrio.astar.map
 		public var obstacle:Boolean;
 		
 		/**
-		 * 构造函数
-		 * create a [MapCell] object
-		 */
-		public function MapCell()
-		{
-			
-		}
+		 * 当前单元格与起点和终点的距离之和 
+		 */		
+		public var distance:Number;
 	}
 }

@@ -21,7 +21,7 @@ package com.larrio.astar.map
 		 * 构造函数
 		 * create a [RegionMap] object
 		 */
-		public function RegionMap(row:uint, column:uint, cellRenderClass:Class = MapCell)
+		public function RegionMap(row:uint, column:uint, cellRenderClass:Class = null)
 		{
 			_row = row; _column = column; _cellRenderClass = cellRenderClass || MapCell;
 			
@@ -112,11 +112,19 @@ package com.larrio.astar.map
 		 */		
 		public function setCell(x:uint, y:uint, cell:MapCell):void
 		{
-			cell ||= new MapCell();
-			cell.x = x;
-			cell.y = y;
-			
-			_dict[createKey(x, y)] = cell;
+			var key:String = createKey(x, y);
+			if (!cell && (x >= _column || y >= _row))
+			{
+				_dict[key] = null;
+			}
+			else
+			{
+				cell ||= new MapCell();
+				cell.x = x;
+				cell.y = y;
+				
+				_dict[createKey(x, y)] = cell;
+			}
 		}
 		
 		/**
