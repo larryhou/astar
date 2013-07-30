@@ -72,6 +72,7 @@ package com.larrio.astar
 		{
 			var key:String;
 			var dx:int, dy:int;
+			
 			if (_step == STEP_CACULATE)
 			{
 				if (!_rounds.length)
@@ -83,12 +84,13 @@ package com.larrio.astar
 						_lastCell = _cell;
 						
 						_cell = _result.pop();
-						_excludes[createKey(_cell.x, _cell.y)] = true;
+						
+						key = createKey(_cell.x, _cell.y);
+						delete _includes[key];
+						_excludes[key] = true;
 						
 						_cell = _result[_result.length - 1];
 						_step = STEP_BACKWARD;
-						
-						trace("backward.");
 						
 						notify();
 						return true;

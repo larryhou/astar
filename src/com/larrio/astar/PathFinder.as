@@ -83,6 +83,7 @@ package com.larrio.astar
 						cell = result.pop();
 						key = createKey(cell.x, cell.y);
 						excludes[key] = true;
+						delete includes[key];
 						
 						cell = result[result.length - 1];
 						continue;

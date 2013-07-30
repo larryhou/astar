@@ -58,7 +58,7 @@ package larrio
 		{
 			if (_simulator.forward())
 			{
-				setTimeout(forward, 100);
+				setTimeout(forward, 50);
 			}
 		}
 		
@@ -72,7 +72,7 @@ package larrio
 					cell = _simulator.cell;
 					item = _map.getItem(cell.x, cell.y);
 					item.status = ItemStatusType.PATH;
-					item.label = ++_index;
+					item.label = (++_index).toString();
 					break;
 				}
 				
@@ -108,6 +108,8 @@ package larrio
 					cell = _simulator.lastCell;
 					item = _map.getItem(cell.x, cell.y);
 					item.status = ItemStatusType.FORBIDDEN;
+					item.label = "";
+					_index--;
 					break;
 				}
 			}

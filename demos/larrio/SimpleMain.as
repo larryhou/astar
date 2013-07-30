@@ -53,7 +53,7 @@ package larrio
 					if (item) 
 					{
 						item.status = ItemStatusType.PATH;
-						item.label = i;
+						item.label = i.toString();
 					}
 					
 					trace(i + ".{x:" + cell.x + ", y:" + cell.y + "}");

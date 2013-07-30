@@ -84,10 +84,10 @@ package larrio
 			this.status = _obstacle? ItemStatusType.OBSTACLE : ItemStatusType.IDLE;
 		}
 
-		public function get label():int { return int(_label.text); }
-		public function set label(value:int):void
+		public function get label():String { return _label.text; }
+		public function set label(value:String):void
 		{
-			_label.text = value.toString();
+			_label.text = value;
 		}
 
 
