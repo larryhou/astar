@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<actionScriptProperties analytics="false" mainApplicationPath="larrio/SimpleMain.as" projectUUID="85767490-5648-4226-b891-ce462de20aa5" version="10">
+<actionScriptProperties analytics="false" mainApplicationPath="larrio/SimulatorMain.as" projectUUID="85767490-5648-4226-b891-ce462de20aa5" version="10">
   <compiler additionalCompilerArguments="-locale en_US" autoRSLOrdering="true" copyDependentFiles="true" fteInMXComponents="false" generateAccessible="true" htmlExpressInstall="true" htmlGenerate="false" htmlHistoryManagement="true" htmlPlayerVersionCheck="true" includeNetmonSwc="false" outputFolderPath="bin" removeUnusedRSL="true" sourceFolderPath="demos" strict="true" targetPlayerVersion="0.0.0" useApolloConfig="false" useDebugRSLSwfs="true" verifyDigests="true" warn="true">
     <compilerSourcePath>
       <compilerSourcePathEntry kind="1" linkType="1" path="src"/>
@@ -34,6 +34,7 @@
     <sourceAttachmentPath/>
   </compiler>
   <applications>
+    <application path="larrio/SimulatorMain.as"/>
     <application path="larrio/SimpleMain.as"/>
   </applications>
   <modules/>

@@ -14,7 +14,7 @@ package larrio
 		
 		public static const FINISH_POINT:uint = 2;
 		
-		public static const BUFFER:uint = 3;
+		public static const CACULATE:uint = 3;
 		
 		public static const PATH:uint = 4;
 		

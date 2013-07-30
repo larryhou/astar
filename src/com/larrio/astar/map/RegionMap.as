@@ -225,6 +225,33 @@ package com.larrio.astar.map
 		}
 		
 		/**
+		 * 判断当前单元格是否临近障碍物 
+		 * @param x			对应列
+		 * @param y			对应行
+		 * @param diagnal	是否包含对角线的单元格
+		 */	
+		public function nearObstacle(x:uint, y:uint, diagnal:Boolean = false):Boolean
+		{
+			var cell:MapCell;
+			for (var i:int = -1; i <= 1; i++)
+			{
+				for (var j:int = -1; j <= 1; j++)
+				{
+					if (i == 0 && j == 0) continue;
+					
+					cell = getCell(x + j, y + i);
+					if (cell)
+					{
+						if (!diagnal && Math.abs(i) + Math.abs(j) == 2) continue;
+						if (cell.obstacle) return true;
+					}
+				}
+			}
+			
+			return false;
+		}
+		
+		/**
 		 * 单元格类
 		 */		
 		public function get cellRenderClass():Class { return _cellRenderClass; }

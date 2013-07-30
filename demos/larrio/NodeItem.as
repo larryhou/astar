@@ -32,9 +32,9 @@ package larrio
 			
 			_label = new TextField();
 			_label.width = SIZE;
-			_label.height = 20;
+			_label.height = 18;
 			_label.y = (SIZE - _label.height) / 2;
-			_label.defaultTextFormat = new TextFormat("Monaco", 15, 0xFFFFFF, null, null,null,null,null, "center");
+			_label.defaultTextFormat = new TextFormat("Monaco", 13, 0xFFFFFF, null, null,null,null,null, "center");
 			addChild(_label);
 		}
 		
@@ -48,14 +48,14 @@ package larrio
 			{
 				case ItemStatusType.START_POINT:color = 0x0066FF;break;
 				case ItemStatusType.FINISH_POINT:color = 0x0000FF;break;
-				case ItemStatusType.BUFFER:color = 0xFF9900;break;
+				case ItemStatusType.CACULATE:color = 0xFF9900;break;
 				case ItemStatusType.PATH:color = 0x336600;break;
 				case ItemStatusType.FORBIDDEN:color = 0xCC0000;break;
 				case ItemStatusType.OBSTACLE:color = 0x000000;break;
 				default:color = DEFAULT_COLOR;break;
 			}
 			
-			if (value == _status) color = DEFAULT_COLOR;
+			//if (value == _status) color = DEFAULT_COLOR;
 			
 			_status = value;
 			
