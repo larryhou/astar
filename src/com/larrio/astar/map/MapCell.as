@@ -24,7 +24,32 @@ package com.larrio.astar.map
 		public var obstacle:Boolean;
 		
 		/**
-		 * 当前单元格与起点和终点的距离之和 
+		 * 距离起点的距离 
+		 */		
+		public var g:uint;
+		
+		/**
+		 * 剩余路径估算长度 
+		 */	
+		public var h:uint;
+		
+		/**
+		 * 路径估算长度 
+		 */		
+		public var f:uint;
+		
+		/**
+		 * 索引 
+		 */		
+		public var index:uint;
+		
+		/**
+		 * 父节点 
+		 */		
+		public var belong:MapCell;
+		
+		/**
+		 * 扩展字段 
 		 */		
 		public var distance:Number;
 	}

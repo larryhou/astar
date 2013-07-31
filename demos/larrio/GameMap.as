@@ -67,6 +67,14 @@ package larrio
 			addEventListener(Event.ADDED_TO_STAGE, init);
 		}
 		
+		public function reset():void
+		{
+			for each(var item:NodeItem in _items) item.status = ItemStatusType.IDLE;
+			
+			_start = null;
+			_finish = null;
+		}
+		
 		public function getItem(x:uint, y:uint):NodeItem
 		{
 			return _dict[getKey(x, y)];
