@@ -24,7 +24,7 @@ package com.larrio.astar
 		public static const STEP_BACKWARD:uint	= 2; // 退后一步
 		public static const STEP_CACULATE:uint	= 3; // 计算未知区域
 		public static const STEP_FINISH:uint	= 4; // 搜索成功并结束
-		public static const STEP_START:uint		= 1; // 开始搜索
+		public static const STEP_START:uint		= 5; // 开始搜索
 		
 		private var _step:uint;
 		
