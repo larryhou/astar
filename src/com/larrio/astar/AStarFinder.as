@@ -121,7 +121,6 @@ package com.larrio.astar
 							
 							buffer = cell;
 							forward = true;
-							break;
 						}
 					}
 					
