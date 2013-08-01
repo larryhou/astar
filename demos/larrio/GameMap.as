@@ -69,7 +69,11 @@ package larrio
 		
 		public function reset():void
 		{
-			for each(var item:NodeItem in _items) item.status = ItemStatusType.IDLE;
+			for each(var item:NodeItem in _items) 
+			{
+				item.obstacle = false;
+				item.label = "";
+			}
 			
 			_start = null;
 			_finish = null;
@@ -143,6 +147,8 @@ package larrio
 		{
 			e.currentTarget.removeEventListener(e.type, arguments.callee);
 			removeEventListener(Event.ENTER_FRAME, frameHandler);
+			
+			_buffer = null;
 		}
 		
 		protected function frameHandler(e:Event):void

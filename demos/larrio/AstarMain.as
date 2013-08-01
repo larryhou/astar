@@ -28,7 +28,7 @@ package larrio
 			addChild(_map = new GameMap(25, 33));
 			
 			_map.x = _map.y = 10;
-			_finder = new AStarFinder(true, true);
+			_finder = new AStarFinder(true, false);
 			_finder.map = _map.map;
 			
 			stage.addEventListener(KeyboardEvent.KEY_DOWN, keyHandler);

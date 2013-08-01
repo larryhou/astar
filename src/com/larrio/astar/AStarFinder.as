@@ -15,16 +15,15 @@ package com.larrio.astar
 		private var _map:RegionMap;
 		
 		private var _diagnal:Boolean;
-		private var _optimal:Boolean;
 		private var _freeCross:Boolean;
 		
 		/**
 		 * 构造函数
 		 * create a [AStarFinder] object
 		 */
-		public function AStarFinder(optimal:Boolean = true, diagnal:Boolean = false, freeCross:Boolean = false)
+		public function AStarFinder(diagnal:Boolean = false, freeCross:Boolean = false)
 		{
-			_optimal = optimal; _diagnal = diagnal; _freeCross = freeCross;
+			_diagnal = diagnal; _freeCross = freeCross;
 		}
 		
 		/**
@@ -128,11 +127,11 @@ package com.larrio.astar
 					
 					if (forward) continue;
 					
-					_optimal && open.sort(sortRule);
+					open.sort(sortRule);
 					
 					if (!movable)	// 更换路径
 					{
-						cell = _optimal? open.shift() : open.pop();
+						cell = open.shift();
 						key = createKey(cell);
 						
 						delete includes[key];
@@ -212,15 +211,6 @@ package com.larrio.astar
 		public function set diagnal(value:Boolean):void
 		{
 			_diagnal = value;
-		}
-
-		/**
-		 * 是否查找最优路径
-		 */		
-		public function get optimal():Boolean { return _optimal; }
-		public function set optimal(value:Boolean):void
-		{
-			_optimal = value;
 		}
 
 		/**
