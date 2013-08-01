@@ -16,14 +16,15 @@ package com.larrio.astar
 		
 		private var _diagnal:Boolean;
 		private var _optimal:Boolean;
+		private var _freeCross:Boolean;
 		
 		/**
 		 * 构造函数
 		 * create a [AStarFinder] object
 		 */
-		public function AStarFinder(optimal:Boolean = true, diagnal:Boolean = false)
+		public function AStarFinder(optimal:Boolean = true, diagnal:Boolean = false, freeCross:Boolean = false)
 		{
-			_optimal = optimal; _diagnal = diagnal;
+			_optimal = optimal; _diagnal = diagnal; _freeCross = freeCross;
 		}
 		
 		/**
@@ -60,7 +61,7 @@ package com.larrio.astar
 			var belong:MapCell;
 			var i:int, length:uint;
 			
-			var movable:Boolean;
+			var movable:Boolean, diagnalCross:Boolean;
 			var key:String, index:int, forward:Boolean = true;
 			while (buffer.x != finish.x || buffer.y != finish.y)
 			{
@@ -72,7 +73,15 @@ package com.larrio.astar
 					{
 						cell = rounds[i];
 						key = createKey(cell);
+						
 						if (excludes[key]) continue;
+						
+						diagnalCross = (belong.x - cell.x) != 0 && (belong.y - cell.y) != 0
+						if (diagnalCross)
+						{
+							if (!_freeCross && !checkCrossAvailable(belong, cell)) continue;
+						}
+						
 						movable = true;
 						
 						cell.belong = belong;
@@ -80,7 +89,8 @@ package com.larrio.astar
 						
 						dx = Math.abs(finish.x - cell.x);
 						dy = Math.abs(finish.y - cell.y);
-						cell.g = belong.g + (dx && dy? 14 : 10);
+						
+						cell.g = belong.g + (diagnalCross? 14 : 10);
 						
 						cell.h = dx + dy;
 						cell.f = cell.g + cell.h;
@@ -199,6 +209,14 @@ package com.larrio.astar
 			_optimal = value;
 		}
 
+		/**
+		 * 对角可以行走条件下，是否可以自由穿越有障碍对角点
+		 */		
+		public function get freeCross():Boolean { return _freeCross; }
+		public function set freeCross(value:Boolean):void
+		{
+			_freeCross = value;
+		}
 
 	}
 }
