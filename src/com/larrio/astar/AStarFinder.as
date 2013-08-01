@@ -57,6 +57,7 @@ package com.larrio.astar
 			buffer.belong = null;
 			
 			var rounds:Vector.<MapCell>;
+			var encounter:Vector.<MapCell>;
 			
 			var belong:MapCell;
 			var i:int, length:uint;
@@ -67,7 +68,10 @@ package com.larrio.astar
 			{
 				if (forward)
 				{
+					forward = false;
+					
 					belong = buffer; movable = false;
+					encounter = new Vector.<MapCell>();
 					rounds = _map.getAroundCells(belong.x, belong.y, _diagnal);
 					for (i = 0, length = rounds.length; i < length; i++) 
 					{
@@ -83,37 +87,48 @@ package com.larrio.astar
 						}
 						
 						movable = true;
-						
-						cell.belong = belong;
-						cell.index = ++sequence;
-						
-						dx = Math.abs(finish.x - cell.x);
-						dy = Math.abs(finish.y - cell.y);
-						
-						cell.g = belong.g + (diagnalCross? 14 : 10);
-						
-						cell.h = dx + dy;
-						cell.f = cell.g + cell.h;
-						
 						if (includes[key])
 						{
-							if (cell.g <= buffer.g)
-							{
-								index = open.indexOf(cell);
-								open.splice(index, 1);
-								
-								delete includes[key];
-								excludes[key] = true;
-								
-								buffer = cell;
-							}
+							encounter.push(cell);
 						}
 						else
 						{
+							cell.belong = belong;
+							cell.index = ++sequence;
+							
+							dx = Math.abs(finish.x - cell.x);
+							dy = Math.abs(finish.y - cell.y);
+							
+							cell.g = belong.g + (diagnalCross? 14 : 10);
+							
+							cell.h = dx + dy;
+							cell.f = cell.g + cell.h;
+							
 							open.push(cell);
 							includes[key] = true;
 						}
 					}
+					
+					while (encounter.length)
+					{
+						cell = encounter.shift();
+						if (cell.g < buffer.g)
+						{
+							index = open.indexOf(cell);
+							open.splice(index, 1);
+							
+							delete includes[key];
+							excludes[key] = true;
+							
+							buffer = cell;
+							forward = true;
+							break;
+						}
+					}
+					
+					if (forward) continue;
+					
+					_optimal && open.sort(sortRule);
 					
 					if (!movable)	// 更换路径
 					{
@@ -124,11 +139,10 @@ package com.larrio.astar
 						excludes[key] = true;
 						
 						buffer = cell;
-						continue;
+						forward = true;
 					}
 					
-					_optimal && open.sort(sortRule);
-					forward = false;
+					if (forward) continue;
 				}
 				
 				if (!open.length) return null;

@@ -28,7 +28,7 @@ package larrio
 			addChild(_map = new GameMap(25, 33));
 			
 			_map.x = _map.y = 10;
-			_finder = new AStarFinder(false);
+			_finder = new AStarFinder(true, true);
 			_finder.map = _map.map;
 			
 			stage.addEventListener(KeyboardEvent.KEY_DOWN, keyHandler);
@@ -52,12 +52,15 @@ package larrio
 				result.shift(); result.pop();
 			}
 			
-			for each (var cell:MapCell in result)
+			var cell:MapCell;
+			for (var i:int = 0; i < result.length; i++)
 			{
+				cell = result[i];
 				item = _map.getItem(cell.x, cell.y);
 				if (item)
 				{
 					item.status = ItemStatusType.PATH;
+					item.label = i.toString(); 
 				}
 			}
 		}

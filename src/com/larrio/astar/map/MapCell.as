@@ -52,5 +52,7 @@ package com.larrio.astar.map
 		 * 扩展字段 
 		 */		
 		public var distance:Number;
+		
+		public function toString():String { return "{x:" + x + ", y:" + y + "}"; }
 	}
 }
