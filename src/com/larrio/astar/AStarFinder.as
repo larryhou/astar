@@ -145,6 +145,24 @@ package com.larrio.astar
 			return result;
 		}
 		
+		/**
+		 * 检查对角中间是否包含障碍物 
+		 * @param buffer  当前位置
+		 * @param cell    下一个单元格
+		 * @return true为有效， false为不可穿越
+		 */		
+		private function checkCrossAvailable(buffer:MapCell, cell:MapCell):Boolean
+		{
+			var cross:MapCell;
+			
+			cross = _map.getCell(buffer.x, cell.y);
+			if (!cross || cross.obstacle) return false;
+			
+			cross = _map.getCell(cell.x, buffer.y);
+			if (!cross || cross.obstacle) return false;
+			return true;
+		}
+		
 		private function sortRule(c1:MapCell, c2:MapCell):int
 		{
 			if (c1.f > c2.f) return 1;
